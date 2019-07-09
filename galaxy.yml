@@ -6,17 +6,20 @@ name: collection
 # semantic versioning compliant version designation
 version: 0.0.1
 # a list of the collection's content authors: 'Full Name <email> (http://site) @nicks:irc/im/site#channel'
-authors: 'Ansible Security Automation Team (https://github.com/ansible-security)'
+authors:
+  - 'Ansible Security Automation Team (https://github.com/ansible-security)'
 
 ### optional but strongly advised
 # short summary of the collection
 description: Ansible Collection of content aiming to automate common tasks of Information Security Professionals for various software/services/appliances
 # a valid SPDX license identifier https://spdx.org/licenses/
-license: 'GPL-3.0-or-later'
+license:
+  - 'GPL-3.0-or-later'
 # list of keywords you want to associate the collection with for indexing/search systems
-tags: security
+tags:
+  - security
 # list of dependencies, other collections this collection requires to be installed for it to be usable
-dependencies:
+#dependencies:
 
 ### urls
 # url of originating SCM repository
