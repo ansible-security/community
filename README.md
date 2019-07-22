@@ -1,4 +1,4 @@
-# Ansible Security Collection
+# Ansible Security Community Collection
 
 ## NOTE: THIS COLLECTION IS UNDER ACTIVE DEVELOPMENT AND SHOULD NOT BE CONSIDERED STABLE AT THIS TIME
 
