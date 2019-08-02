@@ -1,0 +1,35 @@
+---
+# tasks file for snort-config
+#
+
+- name: verify required variable is defined
+  fail:
+    msg: "Required variable 'ids_provider' is not defined"
+  when: ids_provider is not defined
+
+- name: ensure ids_provider is valid
+  fail:
+    msg: >
+      Provided value for 'ids_provider' is not valid
+      must be one of {{ ids_provider_list }}
+  when: ids_provider not in ids_provider_list
+
+- name: ensure ids_config_remote_log_protocol is valid if provided
+  fail:
+    msg: >
+      Provided value for 'ids_config_remote_log_protocol' is not valid
+      must be one of {{ ids_config_remote_log_valid_protocols }}
+  when: (ids_config_remote_log_protocol is defined) and (ids_config_remote_log_procotol not in ids_config_remote_log_valid_protocols)
+
+- name: ensure remote host defined if remote logging enabled
+  fail:
+    msg: >
+      A value for 'ids_config_remote_log_destination' must be provided if enabling
+      remote logging
+  when: (ids_config_remote_log is defined) and ids_config_remote_log and (ids_config_remote_log_destination is not defined)
+
+- name: apply snort specific configs
+  import_tasks: snort.yml
+  when: ids_provider == 'snort'
+
+

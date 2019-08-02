@@ -1,0 +1,8 @@
+---
+- block:
+    - name: collect snort facts
+      ansible_security.community.snort_rule_facts:
+        filter: "{{ ids_rule_facts_filter|default(None) }}"
+      when: ids_provider == "snort"
+  collections:
+    - ansible_security.community
