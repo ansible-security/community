@@ -34,9 +34,36 @@ ansible_httpapi_validate_certs=yes
 ansible_connection=httpapi
 ```
 
-Below we use the [`block`](https://docs.ansible.com/ansible/latest/user_guide/playbooks_blocks.html) level keyword, we are able to use the `qradar_log_source_management` without the need for the Ansible Collection Namespace.
+#### Define your collection search path at the Play level
+
+Below we specify our collection at the Play level which allows us to use the
+`qradar_log_source_management` module without specifying the need for the
+Ansible Collection Namespace.
 
 `qradar_with_collections_example.yml`
+```
+---
+- name: Testing URI manipulation of QRadar
+  hosts: qradar
+  gather_facts: false
+  collections:
+    - ansible_security.community
+  tasks:
+    - name: collection namespace block
+      block:
+        - name: create log source
+          qradar_log_source_management:
+            name: "Ansible Collections Example Log Source"
+            type_name: "Linux OS"
+            state: present
+            description: "Ansible Collections Example Log Source Description"
+```
+
+#### Define your collection search path at the Block level
+
+Below we use the [`block`](https://docs.ansible.com/ansible/latest/user_guide/playbooks_blocks.html) level keyword, we are able to use the `qradar_log_source_management` module without the need for the Ansible Collection Namespace.
+
+`qradar_with_collections_block_example.yml`
 ```
 ---
 - name: Testing URI manipulation of QRadar
