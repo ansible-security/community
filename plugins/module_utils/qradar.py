@@ -109,7 +109,6 @@ class QRadarRequest(object):
         """
         GET attributes of a monitor by rest path
         """
-
         return self.get("/{0}".format(rest_path))
 
     def delete_by_path(self, rest_path):
@@ -126,6 +125,8 @@ class QRadarRequest(object):
         if data == None:
             data = json.dumps(self.get_data())
         elif data == False:
+            # Because for some reason some QRadar REST API endpoint use the
+            # query string to modify state
             return self.post("/{0}".format(rest_path))
         return self.post("/{0}".format(rest_path), payload=data)
 
